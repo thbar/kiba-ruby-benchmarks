@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/thbar/system_bang.git
+  revision: 6db2dcfd07989f58ebecbc274a2d5143de5a7aac
+  specs:
+    system_bang (0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -11,6 +17,7 @@ PLATFORMS
 DEPENDENCIES
   kiba (~> 2.0.0.rc1)
   kiba-common
+  system_bang!
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
