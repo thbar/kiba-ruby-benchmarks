@@ -1,3 +1,27 @@
+require_relative 'etl/csv_source'
+
+require 'kiba-common/destinations/csv'
+require 'kiba-common/dsl_extensions/show_me'
+extend Kiba::Common::DSLExtensions::ShowMe
+
 pre_process do
   puts "Running with ruby #{RUBY_VERSION}"
 end
+
+source CSVSource, filename: "data/extract.csv",
+  csv_options: {
+    col_sep: ';',
+    encoding: "ISO-8859-1:UTF-8"
+  },
+  limit: 2
+  
+transform do |row|
+  if @headers
+    Hash[@headers.zip(row)]
+  else
+    @headers = row
+    nil
+  end
+end
+
+show_me!
