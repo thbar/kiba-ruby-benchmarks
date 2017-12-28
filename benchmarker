@@ -8,6 +8,10 @@ case "$1" in
     LAST_RUBY=${RUBY_VERSIONS##*,}
     rvm $LAST_RUBY do bundle exec kiba setup.etl
     ;;
+  --run-one)
+    LAST_RUBY=${RUBY_VERSIONS##*,}
+    rvm $LAST_RUBY do bundle exec kiba csv_processing.etl
+    ;;
   --run)
     rvm $RUBY_VERSIONS do bundle exec kiba csv_processing.etl
     ;;
