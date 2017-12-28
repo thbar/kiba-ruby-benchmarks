@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    kiba (2.0.0.rc1)
+    kiba-common (0.0.4)
+      kiba (>= 1.0.0, < 3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  kiba (~> 2.0.0.rc1)
+  kiba-common
+
+BUNDLED WITH
+   1.16.0
