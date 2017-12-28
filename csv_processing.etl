@@ -1,19 +1,21 @@
+require 'system_bang'
 require_relative 'etl/csv_source'
 
-require 'kiba-common/destinations/csv'
 require 'kiba-common/dsl_extensions/show_me'
 extend Kiba::Common::DSLExtensions::ShowMe
+require 'kiba-common/dsl_extensions/logger'
+extend Kiba::Common::DSLExtensions::Logger
 
 pre_process do
-  puts "Running with ruby #{RUBY_VERSION}"
+  @start_time = Time.now
+  logger.info "Running with ruby #{RUBY_VERSION}"
 end
 
 source CSVSource, filename: "data/extract.csv",
   csv_options: {
     col_sep: ';',
     encoding: "ISO-8859-1:UTF-8"
-  },
-  limit: 2
+  }
   
 transform do |row|
   if @headers
@@ -24,4 +26,22 @@ transform do |row|
   end
 end
 
-show_me!
+transform do |row|
+  {
+    siren: row.fetch('SIREN'),
+    libapen: row.fetch('LIBAPEN')
+  }
+end
+
+# show_me!
+
+# destination Kiba::Common::Destinations::CSV,
+#   filename: "data/output.csv"
+
+destination CSVDestination,
+    filename: "data/output.csv"
+
+post_process do
+  logger.info "Processing done (took #{(Time.now - @start_time).round(2)} seconds)"
+  SystemBang.system!("cksum data/output.csv")
+end
