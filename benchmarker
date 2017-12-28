@@ -3,6 +3,11 @@ case "$1" in
   --install)
     rvm $RUBY_VERSIONS do bundle install  
     ;;
+  --setup)
+    # we just need one ruby to carry this out - pick the last https://stackoverflow.com/a/22727262
+    LAST_RUBY=${RUBY_VERSIONS##*,}
+    rvm $LAST_RUBY do bundle exec kiba setup.etl
+    ;;
   --run)
     rvm $RUBY_VERSIONS do bundle exec kiba csv_processing.etl
     ;;
