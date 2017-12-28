@@ -7,7 +7,7 @@ pre_process do
       puts "Downloading data file"
       SystemBang.system!("axel -n 10 http://files.data.gouv.fr/sirene/#{file}")
       SystemBang.system!("unzip #{file}")
-      SystemBang.system!("head -10000 #{file} > extract.csv")
+      SystemBang.system!("head -10000 sirc* > extract.csv")
     end
   end
 end
