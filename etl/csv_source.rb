@@ -1,10 +1,10 @@
 require 'csv'
 
 class CSVSource
-  def initialize(filename:, csv_options:, limit: nil)
-    @filename = filename
-    @csv_options = csv_options
-    @limit = limit
+  def initialize(options)
+    @filename = options.fetch(:filename)
+    @csv_options = options.fetch(:csv_options)
+    @limit = options.fetch(:limit, nil)
   end
   
   def each
