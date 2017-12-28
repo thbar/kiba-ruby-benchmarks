@@ -16,3 +16,26 @@ class CSVSource
     end
   end
 end
+
+class CSVDestination
+  attr_reader :filename, :csv_options, :csv, :headers
+  
+  def initialize(filename: nil, csv_options: nil, headers: nil)
+    @filename = filename
+    @csv_options = csv_options || {}
+    @headers = headers
+  end
+  
+  def write(row)
+    @csv ||= ::CSV.open(filename, 'wb', csv_options)
+    @headers ||= row.keys
+    @headers_written ||= (csv << headers ; true)
+#    csv << row.fetch_values(*@headers)
+    values = row.values_at(*@headers)
+    csv << values
+  end
+  
+  def close
+    @csv.close if @csv
+  end
+end
