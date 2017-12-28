@@ -1,4 +1,4 @@
-RUBY_VERSIONS=2.0.0,2.3.5,2.4.2,2.5.0
+RUBY_VERSIONS=2.0.0,2.1.10,2.2.9,2.3.5,2.4.2,2.5.0
 case "$1" in
   --install)
     rvm $RUBY_VERSIONS do bundle install  
