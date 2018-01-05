@@ -8,7 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.8.0)
-    kiba (2.0.0.rc1)
+    kiba (2.0.0)
     kiba-common (0.0.4)
       kiba (>= 1.0.0, < 3)
 
@@ -17,7 +17,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  kiba (~> 2.0.0.rc1)
+  kiba (= 2.0.0)
   kiba-common
   system_bang!
 
