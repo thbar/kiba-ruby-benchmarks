@@ -11,6 +11,11 @@ pre_process do
   logger.info "Running with ruby #{RUBY_VERSION}"
 end
 
+if ENV['USE_STREAMING_RUNNER'] == '1'
+  extend Kiba::DSLExtensions::Config
+  config :kiba, runner: Kiba::StreamingRunner
+end
+
 source CSVSource, filename: "data/extract.csv",
   csv_options: {
     col_sep: ';',
