@@ -190,3 +190,12 @@ I, [2018-02-01T19:27:33.748000 #59828]  INFO -- : Running with ruby 2.3.5
 I, [2018-02-01T19:28:02.335000 #59828]  INFO -- : Processing done (took 28.55 seconds)
 1406423187 519371 data/output.csv
 ```
+
+The output seems correct (the checksum for `data/output.csv`) but this is massively slower than Ruby 2.5.0:
+
+```
+19:29 $ bundle exec kiba csv_processing.etl 
+I, [2018-02-01T19:30:03.872656 #60514]  INFO -- : Running with ruby 2.5.0
+I, [2018-02-01T19:30:07.665543 #60514]  INFO -- : Processing done (took 3.79 seconds)
+1406423187 519371 data/output.csv
+```
