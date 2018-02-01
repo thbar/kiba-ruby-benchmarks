@@ -165,3 +165,28 @@ LoadError: cannot load such file -- csv_processing.etl/etl/csv_source
 ```
 
 I believe there is a subtle difference in the way require paths are handled, at least when using `instance_eval` like Kiba does.
+
+I replaced this:
+
+```
+require_relative 'etl/csv_source'
+```
+
+by: 
+
+```
+require './etl/csv_source'
+```
+
+Then I was able to start and get a time:
+
+```
+$ bundle exec kiba csv_processing.etl
+warning: already initialized constant Bundler::Dependency::PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:12: warning: previous definition of PLATFORM_MAP was here
+warning: already initialized constant Bundler::Dependency::REVERSE_PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:70: warning: previous definition of REVERSE_PLATFORM_MAP was here
+I, [2018-02-01T19:27:33.748000 #59828]  INFO -- : Running with ruby 2.3.5
+I, [2018-02-01T19:28:02.335000 #59828]  INFO -- : Processing done (took 28.55 seconds)
+1406423187 519371 data/output.csv
+```
