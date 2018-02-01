@@ -1,2 +1,3 @@
+graalvm
 data/*
 !data/.gitkeep
