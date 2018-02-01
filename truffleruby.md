@@ -141,3 +141,27 @@ Fabulous run in 2.025488s, 18.7609 runs/s, 30.6099 assertions/s.
 
 38 runs, 62 assertions, 0 failures, 0 errors, 0 skips
 ```
+
+Since Kiba's tests were passing, I went further to the benchmarks:
+
+```
+cd ~/git/kiba-ruby-benchmarks
+bundle install
+brew install axel
+bundle exec kiba setup.etl
+```
+
+Then I wanted to run the benchmark, but got:
+
+```
+19:25 $ bundle exec kiba csv_processing.etl
+warning: already initialized constant Bundler::Dependency::PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:12: warning: previous definition of PLATFORM_MAP was here
+warning: already initialized constant Bundler::Dependency::REVERSE_PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:70: warning: previous definition of REVERSE_PLATFORM_MAP was here
+bundler: failed to load command: kiba (/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/bin/kiba)
+LoadError: cannot load such file -- csv_processing.etl/etl/csv_source
+  csv_processing.etl:2:in `require_relative'
+```
+
+I believe there is a subtle difference in the way require paths are handled, at least when using `instance_eval` like Kiba does.
