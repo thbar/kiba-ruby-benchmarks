@@ -118,3 +118,26 @@ Bundle complete! 5 Gemfile dependencies, 6 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
+At this point I was able to run Kiba's test suite:
+
+```
+19:20 $ bundle exec rake
+warning: already initialized constant Bundler::Dependency::PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:12: warning: previous definition of PLATFORM_MAP was here
+warning: already initialized constant Bundler::Dependency::REVERSE_PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:70: warning: previous definition of REVERSE_PLATFORM_MAP was here
+[ruby] WARN A nonstandard GEM_HOME is set /Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0
+warning: already initialized constant Bundler::Dependency::PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:12: warning: previous definition of PLATFORM_MAP was here
+warning: already initialized constant Bundler::Dependency::REVERSE_PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:70: warning: previous definition of REVERSE_PLATFORM_MAP was here
+Run options: --seed 4569
+
+# Running:
+
+......................................
+
+Fabulous run in 2.025488s, 18.7609 runs/s, 30.6099 assertions/s.
+
+38 runs, 62 assertions, 0 failures, 0 errors, 0 skips
+```
