@@ -57,3 +57,64 @@ Then I realized that maybe installing `bundler` as a gem would work:
 ```
 $ gem install bundler
 ```
+
+It worked fast enough, but then it started installing the documentation, which took ages & made my CPU go to 400%:
+
+```
+Parsing documentation for bundler-1.16.1
+Installing ri documentation for bundler-1.16.1
+Done installing documentation for bundler after 115 seconds
+```
+
+(Yup, 115 seconds).
+
+I added a `~/.gemrc` file with this:
+
+```
+gem: --no-document
+```
+
+in order to try to avoid that.
+
+Then I tried to install the Kiba development dependencies, but got this error:
+
+```
+$ bundle install
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/patches/bundler/bundler.rb:5:in `<top (required)>': unsupported bundler version please use 1.14.x (RuntimeError)
+```
+
+I checked the rubygems page to verify what's the latest 1.14.x here https://rubygems.org/gems/bundler/versions then ran:
+
+```
+gem uninstall bundler
+gem install bundler -v 1.14.6
+```
+
+I finally ran:
+
+```
+bundle install
+```
+
+which took my CPU back to 360%, and showed a few warnings, but ultimately succeeded:
+
+```
+
+19:17 $ bundle install
+warning: already initialized constant Bundler::Dependency::PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:12: warning: previous definition of PLATFORM_MAP was here
+warning: already initialized constant Bundler::Dependency::REVERSE_PLATFORM_MAP
+/Users/thbar/graalvm/graalvm-0.30.2/Contents/Home/jre/languages/ruby/lib/ruby/gems/2.3.0/gems/bundler-1.14.6/lib/bundler/dependency.rb:70: warning: previous definition of REVERSE_PLATFORM_MAP was here
+Fetching gem metadata from https://rubygems.org/.........................
+Fetching version metadata from https://rubygems.org/..
+Resolving dependencies.......
+Installing rake 12.3.0
+Installing awesome_print 1.8.0
+Using kiba 2.0.0 from source at `.`
+Installing minitest 5.11.3
+Using bundler 1.14.6
+Using minitest-focus 1.1.2
+Bundle complete! 5 Gemfile dependencies, 6 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+```
+
