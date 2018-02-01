@@ -1,5 +1,9 @@
 ### Attempt to get this running on TruffleRuby
 
+First I wondered what is the fastest TruffleRuby available today? I'm not sure to understand what exactly is SubstrateVM, how do you install it, how it is related to GraalVM etc or not.
+
+Ultimately I just picked the first installable version I could find.
+
 * https://github.com/oracle/truffleruby#getting-started) encourages me to try out TruffleRuby via GraalVM.
 * http://www.oracle.com/technetwork/oracle-labs/program-languages/ let me download the Mac tgz after login in with Oracle account.
 
