@@ -11,6 +11,10 @@ GEM
     kiba (2.0.0)
     kiba-common (0.0.4)
       kiba (>= 1.0.0, < 3)
+    minitest (5.11.3)
+    minitest-focus (1.1.2)
+      minitest (>= 4, < 6)
+    rake (12.3.0)
 
 PLATFORMS
   ruby
@@ -19,6 +23,9 @@ DEPENDENCIES
   awesome_print
   kiba (= 2.0.0)
   kiba-common
+  minitest
+  minitest-focus
+  rake
   system_bang!
 
 BUNDLED WITH
