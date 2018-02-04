@@ -1,5 +1,6 @@
 require 'system_bang'
-require_relative 'etl/csv_source'
+# fix for truffleruby
+require './etl/csv_source'
 
 require 'kiba-common/dsl_extensions/show_me'
 extend Kiba::Common::DSLExtensions::ShowMe
