@@ -9,5 +9,12 @@ pre_process do
       SystemBang.system!("unzip #{file}")
       SystemBang.system!("head -10000 sirc* > extract.csv")
     end
+    file = 'extract-100k.csv'
+    unless File.exist?(file)
+      SystemBang.system!("head -10000 sirc* > #{file}")
+      9.times do
+        SystemBang.system!("head -10000 sirc* | tail -9999 >> #{file}")
+      end
+    end
   end
 end
