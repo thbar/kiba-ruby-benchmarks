@@ -1,10 +1,8 @@
-RUBY_VERSIONS=2.0.0,2.1.10,2.2.9,2.3.5,2.4.2,2.5.0,2.6.0-preview1,ruby-head
-RUBY_VERSIONS=2.6.0-preview2
-RUBY_VERSIONS=2.0.0,2.5.0,2.6.0-preview2
-MJIT_RUBY_VERSIONS=2.6.0-preview2
+RUBY_VERSIONS=2.5.3,2.6.0-preview2,2.6.0-preview3
+MJIT_RUBY_VERSIONS=2.6.0-preview3
 case "$1" in
   --install)
-    rvm $RUBY_VERSIONS do bundle install  
+    rvm $RUBY_VERSIONS do bundle install
     ;;
   --setup)
     # we just need one ruby to carry this out - pick the last https://stackoverflow.com/a/22727262
@@ -19,8 +17,8 @@ case "$1" in
     rvm $RUBY_VERSIONS do bundle exec kiba csv_processing.etl
     ;;
   --run-jit)
-#    export RUBYOPT="--jit --jit-verbose=1" 
-    export RUBYOPT="--jit" 
+#    export RUBYOPT="--jit --jit-verbose=1"
+    export RUBYOPT="--jit"
     echo "JIT enabled now!!!"
     rvm $MJIT_RUBY_VERSIONS do bundle exec kiba csv_processing.etl
     ;;
