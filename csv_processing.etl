@@ -16,7 +16,8 @@ if ENV['USE_STREAMING_RUNNER'] == '1'
   config :kiba, runner: Kiba::StreamingRunner
 end
 
-source CSVSource, filename: "data/extract-100k.csv",
+source CSVSource, filename: "data/extract-1000k.csv",
+  logger: logger,
   csv_options: {
     col_sep: ';',
     encoding: "ISO-8859-1:UTF-8"
