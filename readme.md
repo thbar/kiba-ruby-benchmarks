@@ -6,7 +6,33 @@ WIP.
 ./benchmarker --run
 ```
 
-### Results
+### Latest results
+
+* 2.6.0preview3 seems to be slower than 2.6.0preview2
+* the JIT version is slightly slower
+
+```
+$ ./benchmarker --run-all
+I, [2018-11-08T19:35:41.451682 #79311]  INFO -- : Running with ruby 2.5.3p105
+I, [2018-11-08T19:35:41.451771 #79311]  INFO -- : Opening data/extract-1000k.csv
+I, [2018-11-08T19:39:17.963685 #79311]  INFO -- : Processing done (took 216.51 seconds) - 999901 rows processed
+4068053997 51935714 data/output.csv
+I, [2018-11-08T19:39:18.699593 #79366]  INFO -- : Running with ruby 2.6.0preview2
+I, [2018-11-08T19:39:18.699685 #79366]  INFO -- : Opening data/extract-1000k.csv
+I, [2018-11-08T19:42:27.177117 #79366]  INFO -- : Processing done (took 188.48 seconds) - 999901 rows processed
+4068053997 51935714 data/output.csv
+I, [2018-11-08T19:42:27.616002 #79404]  INFO -- : Running with ruby 2.6.0preview3
+I, [2018-11-08T19:42:27.616073 #79404]  INFO -- : Opening data/extract-1000k.csv
+I, [2018-11-08T19:45:50.427047 #79404]  INFO -- : Processing done (took 202.81 seconds) - 999901 rows processed
+4068053997 51935714 data/output.csv
+JIT enabled now!!!
+I, [2018-11-08T19:45:51.257123 #79429]  INFO -- : Running with ruby 2.6.0preview3
+I, [2018-11-08T19:45:51.257212 #79429]  INFO -- : Opening data/extract-1000k.csv
+I, [2018-11-08T19:49:10.444202 #79429]  INFO -- : Processing done (took 199.19 seconds) - 999901 rows processed
+4068053997 51935714 data/output.csv
+```
+
+### Results (previous benches with 10k rows)
 
 ```
 I, [2017-12-28T23:54:36.848328 #8909]  INFO -- : Running with ruby 2.0.0
