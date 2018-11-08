@@ -1,18 +1,32 @@
 require 'system_bang'
 
+require 'kiba-common/dsl_extensions/logger'
+extend Kiba::Common::DSLExtensions::Logger
+
 pre_process do
   Dir.chdir('data') do
     file = 'sirene_2017111_E_Q.zip'
     unless File.exist?(file)
-      puts "Downloading data file"
+      logger.info "Downloading data file (using axel)"
       SystemBang.system!("axel -n 10 http://files.data.gouv.fr/sirene/#{file}")
+      logger.info "Unpacking file"
       SystemBang.system!("unzip #{file}")
+      logger.info "Creating 10k rows extract"
       SystemBang.system!("head -10000 sirc* > extract.csv")
     end
     file = 'extract-100k.csv'
     unless File.exist?(file)
+      logger.info "Creating 100k rows extract"
       SystemBang.system!("head -10000 sirc* > #{file}")
       9.times do
+        SystemBang.system!("head -10000 sirc* | tail -9999 >> #{file}")
+      end
+    end
+    file = 'extract-1000k.csv'
+    unless File.exist?(file)
+      logger.info "Creating 1000k rows extract"
+      SystemBang.system!("head -10000 sirc* > #{file}")
+      99.times do
         SystemBang.system!("head -10000 sirc* | tail -9999 >> #{file}")
       end
     end
