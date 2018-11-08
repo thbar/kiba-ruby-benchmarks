@@ -8,9 +8,6 @@ WIP.
 
 ### Latest results
 
-* 2.6.0preview3 seems to be slower than 2.6.0preview2
-* the JIT version is slightly slower
-
 ```
 $ ./benchmarker --run-all
 I, [2018-11-08T19:35:41.451682 #79311]  INFO -- : Running with ruby 2.5.3p105
