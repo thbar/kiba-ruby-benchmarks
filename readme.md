@@ -32,6 +32,30 @@ I, [2018-11-08T19:49:10.444202 #79429]  INFO -- : Processing done (took 199.19 s
 4068053997 51935714 data/output.csv
 ```
 
+For the record:
+
+```
+I, [2018-11-08T19:56:31.742733 #5653]  INFO -- : Running with jruby 9.2.1.0
+I, [2018-11-08T19:56:31.749452 #5653]  INFO -- : Opening data/extract-1000k.csv
+I, [2018-11-08T19:59:27.835856 #5653]  INFO -- : Processing done (took 176.09 seconds) - 999901 rows processed
+4068053997 51935714 data/output.csv
+```
+
+And TruffleRuby 1.0.0-rc9 fails with:
+
+```
+/Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1893:in `block (2 levels) in shift': Missing or stray quote in line 24473 (CSV::MalformedCSVError)
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1868:in `each'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1868:in `block in shift'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1828:in `loop'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1828:in `shift'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1770:in `each'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1148:in `block in foreach'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1299:in `open'
+	from /Users/thbar/.rvm/rubies/truffleruby-1.0.0-rc9/lib/mri/csv.rb:1147:in `foreach'
+	from /Users/thbar/git/kiba-ruby-benchmarks/etl/csv_source.rb:14:in `each'
+```
+
 ### Results (previous benches with 10k rows)
 
 ```
